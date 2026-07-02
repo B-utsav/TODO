@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     container_name: todo-backend
     ports:
-      - "8000:8000"
+      - "1807:1807"
     volumes:
       - ./backend:/app
     environment:
@@ -19,7 +19,7 @@ services:
       dockerfile: Dockerfile
     container_name: todo-frontend
     ports:
-      - "3000:3000"
+      - "1087:1087"
     volumes:
       - ./frontend:/app
       - /app/node_modules

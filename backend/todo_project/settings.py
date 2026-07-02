@@ -14,17 +14,17 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     '*',
     '54.211.188.243',
-    '54.211.188.243:8000',
+    '54.211.188.243:1807',
     'frontend',
     'backend',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    'http://localhost:3000',
-    'http://127.0.0.1:3000',
-    'http://frontend:3000',
-    'http://54.211.188.243:3000',
-    'http://0.0.0.0:3000',
+    'http://localhost:1087',
+    'http://127.0.0.1:1087',
+    'http://frontend:1087',
+    'http://54.211.188.243:1087',
+    'http://0.0.0.0:1087',
 ]
 
 # Application definition
@@ -109,11 +109,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # CORS settings - Allow React frontend to make requests
 CORS_ALLOWED_ORIGINS = [
-    "http://127.0.0.1:3000",
-    "http://localhost:3000",
-    "http://frontend:3000",
-    "http://54.211.188.243:3000",
-    "http://54.211.188.243:8000",
+    "http://127.0.0.1:1087",
+    "http://localhost:1087",
+    "http://frontend:1087",
+    "http://54.211.188.243:1087",
+    "http://54.211.188.243:1807",
 ]
 CORS_ALLOW_CREDENTIALS = True
 

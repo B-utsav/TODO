@@ -14,7 +14,7 @@ npm install
 npm run dev
 ```
 
-Server runs at: http://localhost:3000
+Server runs at: http://localhost:1087
 
 ### Build for production:
 ```bash
