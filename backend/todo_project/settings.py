@@ -9,7 +9,15 @@ SECRET_KEY = 'django-insecure-your-secret-key-change-this-in-production'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    '0.0.0.0',
+    '54.211.188.243',
+    '54.211.188.243:8000',
+    'frontend',
+    'backend',
+]
 
 # Application definition
 INSTALLED_APPS = [
@@ -96,6 +104,8 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     "http://frontend:3000",
+    "http://54.211.188.243:3000",
+    "http://54.211.188.243:8000",
 ]
 
 # REST Framework settings
