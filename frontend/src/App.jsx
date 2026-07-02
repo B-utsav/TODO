@@ -6,6 +6,30 @@ import TodoList from './components/TodoList.jsx';
 
 const API_URL = '/api/todos/';
 
+const getCsrfToken = () => {
+  const cookieValue = document.cookie
+    .split('; ')
+    .find(row => row.startsWith('csrftoken='))
+    ?.split('=')[1];
+
+  return cookieValue || '';
+};
+
+const api = axios.create({
+  withCredentials: true,
+  headers: {
+    'X-Requested-With': 'XMLHttpRequest'
+  }
+});
+
+api.interceptors.request.use((config) => {
+  const token = getCsrfToken();
+  if (token) {
+    config.headers['X-CSRFToken'] = token;
+  }
+  return config;
+});
+
 function App() {
   const [todos, setTodos] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -15,7 +39,7 @@ function App() {
   const fetchTodos = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(API_URL);
+      const response = await api.get(API_URL);
       setTodos(response.data);
       setError(null);
     } catch (err) {
@@ -34,7 +58,7 @@ function App() {
   // Add a new todo
   const addTodo = async (todoData) => {
     try {
-      const response = await axios.post(API_URL, todoData);
+      const response = await api.post(API_URL, todoData);
       setTodos([response.data, ...todos]);
       setError(null);
     } catch (err) {
@@ -46,7 +70,7 @@ function App() {
   // Update a todo
   const updateTodo = async (id, todoData) => {
     try {
-      const response = await axios.put(`${API_URL}${id}/`, todoData);
+      const response = await api.put(`${API_URL}${id}/`, todoData);
       setTodos(todos.map(todo => todo.id === id ? response.data : todo));
       setError(null);
     } catch (err) {
@@ -58,7 +82,7 @@ function App() {
   // Toggle todo completion
   const toggleComplete = async (id) => {
     try {
-      const response = await axios.post(`${API_URL}${id}/toggle_complete/`);
+      const response = await api.post(`${API_URL}${id}/toggle_complete/`);
       setTodos(todos.map(todo => todo.id === id ? response.data : todo));
       setError(null);
     } catch (err) {
@@ -70,7 +94,7 @@ function App() {
   // Delete a todo
   const deleteTodo = async (id) => {
     try {
-      await axios.delete(`${API_URL}${id}/`);
+      await api.delete(`${API_URL}${id}/`);
       setTodos(todos.filter(todo => todo.id !== id));
       setError(null);
     } catch (err) {

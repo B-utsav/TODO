@@ -19,6 +19,14 @@ ALLOWED_HOSTS = [
     'backend',
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
+    'http://frontend:3000',
+    'http://54.211.188.243:3000',
+    'http://0.0.0.0:3000',
+]
+
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -107,6 +115,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://54.211.188.243:3000",
     "http://54.211.188.243:8000",
 ]
+CORS_ALLOW_CREDENTIALS = True
 
 # REST Framework settings
 REST_FRAMEWORK = {
