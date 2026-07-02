@@ -96,7 +96,7 @@ The proxy is configured in `vite.config.js`:
 server: {
   proxy: {
     '/api': {
-      target: 'http://localhost:8000',
+      target: '*',
       changeOrigin: true,
     }
   }
